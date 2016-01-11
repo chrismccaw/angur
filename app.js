@@ -67,11 +67,10 @@ RedisClient.on('connect', function() {
         });
     });
 
-    var server = app.listen(3000, function() {
-        var host = server.address().address;
-        var port = server.address().port;
+    var port = process.env.PORT || 3000;
 
-        console.log('Example app listening at http://%s:%s', host, port);
+    var server = app.listen(port, function() {
+        console.log('Express server listening on port ' + port);
     });
 
 });
