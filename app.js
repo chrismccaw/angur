@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var redis = require("redis");
-if (process.env.REDISTOGO_URL) {
+if (process.env.REDIS_URL) {
     var rtg = require("url").parse(process.env.REDIS_URL);
     var RedisClient = redis.createClient(rtg.port, rtg.hostname);
     RedisClient.auth(rtg.auth.split(":")[1]);
