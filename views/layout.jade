@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Angur Device Fingerprint
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    script(type='text/javascript', src='/javascripts/libs/angular.min.js')
+    script(type='text/javascript', src='/javascripts/app.module.js')
+    script(type='text/javascript', src='/javascripts/components/controllers/NameController.js')
+    script(type='text/javascript', src='/javascripts/components/services/UniqueIdService.js')
+
+  body(ng-app='whoami', ng-controller='NameCtrl')
+   h3#header Who Am I?
+   block content

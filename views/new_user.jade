@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    #details(ng-show='!id')
+         .form-inline
+          .form-group
+           label(for='name') Name
+           input#name.form-control(type='text', placeholder='Chris McCaw',ng-model='name')
+           button.btn.btn-default(type='submit', ng-click='sendName()') Go
+    p.header(ng-show='id') 
+     | Hi, 
+     span {{name}}. 
+     | Your ID is 
+     span {{id}}
