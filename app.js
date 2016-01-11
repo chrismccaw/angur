@@ -4,8 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var redis = require("redis");
-var RedisClient = redis.createClient();
+if (process.env.REDISTOGO_URL) {
+    var rtg = require("url").parse(process.env.REDIS_URL);
+    var RedisClient = redis.createClient(rtg.port, rtg.hostname);
+    RedisClient.auth(rtg.auth.split(":")[1]);
+
+} else {
+    var RedisClient = redis.createClient();
+}
 
 var app = express();
 
