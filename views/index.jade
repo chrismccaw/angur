@@ -1,8 +1,6 @@
 extends layout
 
 block content
- p.header
-  | You are 
-  span #{name}
-  |  with an id of 
-  span #{id}
+ p.header(ng-show="ready")
+  | Your id is 
+  span {{id}}

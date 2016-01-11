@@ -5,10 +5,11 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     script(type='text/javascript', src='/javascripts/libs/angular.min.js')
+    script(type='text/javascript', src='/javascripts/libs/jquery-1.12.0.min.js')
     script(type='text/javascript', src='/javascripts/app.module.js')
-    script(type='text/javascript', src='/javascripts/components/controllers/NameController.js')
-    script(type='text/javascript', src='/javascripts/components/services/UniqueIdService.js')
+    script(type='text/javascript', src='/javascripts/components/controllers/FingerprintController.js')
+    script(type='text/javascript', src='/javascripts/components/services/FingerprintService.js')
 
-  body(ng-app='whoami', ng-controller='NameCtrl')
-   h3#header Who Am I?
+  body(ng-app='whoami', ng-controller='FingerprintCtrl')
+   h3#header Browser Fingerprinting
    block content

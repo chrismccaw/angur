@@ -14,6 +14,13 @@ module.exports = function() {
         return elements;
     };
 
+    var getElementsCollectedFromTheClient = function(information, elements) {
+        for (var el in information) {
+            elements[el] = ""+information[el];
+        }
+        return elements;
+    };
+
     var createHash = function(elements) {
         var shasum = crypto.createHash('sha1');
         for (var i in elements) {
@@ -30,8 +37,9 @@ module.exports = function() {
     };
 
     return {
-        getHashFromRequest: function(req) {
+        getHashFromRequest: function(req, information) {
             var elements = getElementsFromRequest(req);
+            getElementsCollectedFromTheClient(information, elements);
             return createHash(elements);
         }
     };

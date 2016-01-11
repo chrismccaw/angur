@@ -1,30 +1,29 @@
 var express = require('express');
 var fingerprint = new require("../node/Fingerprint.js")();
+var url = require('url');
 
 var router = express.Router();
 
 var SessionService = require("../node/services/SessionService");
 var sessionService;
 
-router.post('/name', function(req, res, next) {
-    var arg = req.body;
-    var name = arg.name;
-    var hash = fingerprint.getHashFromRequest(req);
-    sessionService.postIdName(hash, name).then(function() {
+
+router.get('/', function(req, res, next) {
+    res.render("index");
+});
+
+router.get('/fingerprint', function(req, res, next) {
+    var url_parts = url.parse(req.url, true);
+    var data = url_parts.query;
+    var information = JSON.parse(data.information);
+    var hash = fingerprint.getHashFromRequest(req, information);
+
+    sessionService.getId(hash).then(function() {
+
         res.send(200, {
             id: hash
         });
-    });
-});
 
-router.get('/', function(req, res, next) {
-    var hash = fingerprint.getHashFromRequest(req);
-
-    sessionService.getId(hash).then(function(name) {
-        res.render(name ? 'index' : 'new_user', {
-            name: name,
-            id: hash
-        });
     }).catch(function(error) {
         console.log(error);
         res.render('error', {
